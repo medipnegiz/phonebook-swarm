@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   database:
@@ -15,7 +15,6 @@ services:
         target: /docker-entrypoint-initdb.d/init.sql
     networks:
       - clarusnet
-
   app-server:
     env_file: .env
     image: "${ECR_REPO}:latest"
@@ -29,14 +28,13 @@ services:
       - "80:80"
     networks:
       - clarusnet
-    depends_on:
-      - database
-
-volume:
-  db-data:
-
+        
 networks:
   clarusnet:
-
+    
+volumes: 
+  db-data:
+    
 configs:
-  table: ./init.sql
+  table:
+    file: ./init.sql
